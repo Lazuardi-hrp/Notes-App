@@ -8,7 +8,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
          value={searchTerm}
          onChange={(e) => setSearchTerm(e.target.value)}
          placeholder="Search notes..."
-         className="w-full p-2 border rounded "
+         className="w-full p-2 rounded inset-ring"
          />
       </div>
    )
