@@ -46,16 +46,33 @@ export default function App() {
          <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
          <div className="container mx-auto p-4">
             <div className="mb-4 flex justify-between items-center">
-               <div>
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2" onClick={() => setShowArchived(false)}>
-                     Catatan Aktif
-                  </button>
-                  <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={() => setShowArchived(true)}>
-                     Catatan Arsip
-                  </button>
-               </div>
+            <div>
+               {/* Tombol Catatan Aktif */}
+               <button 
+                  className={`px-4 py-2 rounded shadow-lg transition duration-300 mr-2 mb-2 ${
+                     !showArchived 
+                        ? "bg-[#394867] text-[#F1F6F9]"  // Warna lebih gelap untuk tombol aktif
+                        : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"
+                  }`} 
+                  onClick={() => setShowArchived(false)}
+               >
+                  Catatan Aktif
+               </button>
+
+               {/* Tombol Catatan Arsip */}
+               <button 
+                  className={`px-4 py-2 rounded shadow-lg transition duration-300 ${
+                     showArchived 
+                        ? "bg-[#394867] text-[#F1F6F9]"  // Warna lebih gelap untuk tombol aktif
+                        : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"
+                  }`} 
+                  onClick={() => setShowArchived(true)}
+               >
+                  Catatan Arsip
+               </button>
+            </div>
                <button
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                  className="bg-[#212A3E] text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
                   onClick={() => setIsAddNoteModalOpen(true)}
                >
                   Tambah Catatan
@@ -88,13 +105,20 @@ const Modal = ({ isOpen, onClose, children }) => {
    return (
       <div className="fixed inset-0 bg-black/80 flex justify-center items-center">
          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            {children}
-            <button
-               className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-               onClick={onClose}
-            >
-               Tutup
+         <div className="flex justify-end">
+            <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+               <svg
+               className="w-6 h-6"
+               fill="none"
+               stroke="currentColor"
+               viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg"
+               >
+               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+               </svg>
             </button>
+         </div>
+         {children}
          </div>
       </div>
    );
