@@ -72,7 +72,7 @@ export default function App() {
                </button>
             </div>
                <button
-                  className="bg-[#212A3E] text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                  className="bg-[#212A3E] text-white px-4 py-2 rounded hover:bg-[#9BA4B5] hover:text-[#212A3E] transition-colors"
                   onClick={() => setIsAddNoteModalOpen(true)}
                >
                   Tambah Catatan
@@ -103,7 +103,7 @@ const Modal = ({ isOpen, onClose, children }) => {
    if (!isOpen) return null;
 
    return (
-      <div className="fixed inset-0 bg-black/80 flex justify-center items-center">
+      <div className="fixed inset-0 bg-black/80 flex backdrop-blur-sm justify-center items-center">
          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
          <div className="flex justify-end">
             <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
