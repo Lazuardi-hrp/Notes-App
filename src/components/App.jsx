@@ -3,14 +3,16 @@ import NoteList from "./NoteList";
 import { ToastContainer, toast } from "react-toastify";
 import AddNoteForm from "./AddNoteForm"; 
 import Navbar from "./NavBar";
+import SearchBar from "./SearchBar";
 import { getInitialData, showFormattedDate } from "../utils/utils";
+import { FaPlus } from "react-icons/fa";
 
 export default function App() {
    const [notes, setNotes] = useState([]);
    const [searchTerm, setSearchTerm] = useState("");
    const [showArchived, setShowArchived] = useState(false);
    const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
-   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State untuk sidebar
+   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
    useEffect(() => {
       setNotes(getInitialData());
@@ -25,7 +27,7 @@ export default function App() {
          createdAt: new Date().toISOString(),
       };
       setNotes([...notes, newNote]);
-      setIsAddNoteModalOpen(false); // Close the modal after adding a note
+      setIsAddNoteModalOpen(false);
       toast.success("Catatan berhasil ditambahkan!");
    };
 
@@ -43,44 +45,33 @@ export default function App() {
    );
 
    return (
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-100 flex flex-col">
          <Navbar 
             searchTerm={searchTerm} 
             setSearchTerm={setSearchTerm} 
             isSidebarOpen={isSidebarOpen} 
             setIsSidebarOpen={setIsSidebarOpen} 
          />
-         <div className={`container mx-auto p-4 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-16"}`}>
-            <div className="mb-4 flex justify-between items-center">
-               <div>
+         <div className={`p-4 flex-1 overflow-auto transition-all duration-300 ${isSidebarOpen ? "ml-54 w-[calc(100%-13.5rem)]" : "ml-16 w-[calc(100%-4rem)]"}`}>
+            <div className="mb-4 flex flex-wrap justify-between items-center gap-2">
+               <div className="flex gap-2">
                   <button 
-                     className={`px-4 py-2 rounded shadow-lg transition duration-300 mr-2 mb-2 ${
-                        !showArchived 
-                           ? "bg-[#394867] text-[#F1F6F9]"  
-                           : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"
-                     }`} 
+                     className={`px-4 py-2 rounded shadow-lg transition duration-300 ${!showArchived ? "bg-[#394867] text-[#F1F6F9]" : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"}`} 
                      onClick={() => setShowArchived(false)}
                   >
                      Catatan Aktif
                   </button>
 
                   <button 
-                     className={`px-4 py-2 rounded shadow-lg transition duration-300 ${
-                        showArchived 
-                           ? "bg-[#394867] text-[#F1F6F9]"  
-                           : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"
-                     }`} 
+                     className={`px-4 py-2 rounded shadow-lg transition duration-300 ${showArchived ? "bg-[#394867] text-[#F1F6F9]" : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"}`} 
                      onClick={() => setShowArchived(true)}
                   >
                      Catatan Arsip
                   </button>
                </div>
-               <button
-                  className="bg-[#212A3E] text-white px-4 py-2 rounded hover:bg-[#9BA4B5] hover:text-[#212A3E] transition-colors"
-                  onClick={() => setIsAddNoteModalOpen(true)}
-               >
-                  Tambah Catatan
-               </button>
+               <div className="w-full sm:w-1/4">
+                  <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+               </div>
             </div>
             <NoteList
                notes={filteredNotes}
@@ -90,6 +81,13 @@ export default function App() {
                showFormattedDate={showFormattedDate}
             />
          </div>
+
+         <button
+            className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all"
+            onClick={() => setIsAddNoteModalOpen(true)}
+         >
+            <FaPlus className="w-6 h-6" />
+         </button>
 
          <Modal isOpen={isAddNoteModalOpen} onClose={() => setIsAddNoteModalOpen(false)}>
             <h2 className="text-2xl font-bold mb-4">Tambah Catatan Baru</h2>
@@ -106,7 +104,7 @@ const Modal = ({ isOpen, onClose, children }) => {
    if (!isOpen) return null;
 
    return (
-      <div className="fixed inset-0 bg-black/80 flex backdrop-blur-sm justify-center items-center">
+      <div className="fixed inset-0 bg-black/80 flex backdrop-blur-sm justify-center items-center z-50">
          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
             <div className="flex justify-end">
                <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
