@@ -52,20 +52,18 @@ export default function App() {
             isSidebarOpen={isSidebarOpen} 
             setIsSidebarOpen={setIsSidebarOpen} 
          />
-         <div className={`p-4 flex-1 overflow-auto transition-all duration-300 ${isSidebarOpen ? "ml-54 w-[calc(100%-13.5rem)]" : "ml-16 w-[calc(100%-4rem)]"}`}>
+         <div className={`p-4 flex-1 overflow-auto transition-all duration-300 ${isSidebarOpen ? "ml-44 w-[calc(100%-11rem)]" : "ml-16 w-[calc(100%-4rem)]"}`}>
             <div className="mb-4 flex flex-wrap justify-between items-center gap-2">
                <div className="flex gap-2">
                   <button 
                      className={`px-4 py-2 rounded shadow-lg transition duration-300 ${!showArchived ? "bg-[#394867] text-[#F1F6F9]" : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"}`} 
-                     onClick={() => setShowArchived(false)}
-                  >
+                     onClick={() => setShowArchived(false)}>
                      Catatan Aktif
                   </button>
 
                   <button 
                      className={`px-4 py-2 rounded shadow-lg transition duration-300 ${showArchived ? "bg-[#394867] text-[#F1F6F9]" : "bg-[#F1F6F9] text-[#394867] hover:bg-[#394867] hover:text-[#F1F6F9]"}`} 
-                     onClick={() => setShowArchived(true)}
-                  >
+                     onClick={() => setShowArchived(true)}>
                      Catatan Arsip
                   </button>
                </div>
@@ -83,12 +81,10 @@ export default function App() {
          </div>
 
          <button
-            className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all"
-            onClick={() => setIsAddNoteModalOpen(true)}
-         >
+            className="fixed bottom-6 right-6 bg-[#394867] text-[#F1F6F9] p-4 rounded-full shadow-lg hover:bg-[#F1F6F9] hover:text-[#394867] transition-all"
+            onClick={() => setIsAddNoteModalOpen(true)}>
             <FaPlus className="w-6 h-6" />
          </button>
-
          <Modal isOpen={isAddNoteModalOpen} onClose={() => setIsAddNoteModalOpen(false)}>
             <h2 className="text-2xl font-bold mb-4">Tambah Catatan Baru</h2>
             <AddNoteForm addNote={addNote} onClose={() => setIsAddNoteModalOpen(false)} />
