@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import NoteList from "./NoteList";
+import NoteList from "./notes/NoteList";
 import { ToastContainer, toast } from "react-toastify";
-import AddNoteForm from "./AddNoteForm"; 
+import AddNoteForm from "./notes/AddNoteForm"; 
 import Navbar from "./NavBar";
-import SearchBar from "./SearchBar";
+import SearchBar from "./notes/SearchBar";
 import { getInitialData, showFormattedDate } from "../utils/utils";
 import { FaPlus } from "react-icons/fa";
-
+import Modal from "./Modal"; 
 export default function App() {
    const [notes, setNotes] = useState([]);
    const [searchTerm, setSearchTerm] = useState("");
@@ -85,6 +85,8 @@ export default function App() {
             onClick={() => setIsAddNoteModalOpen(true)}>
             <FaPlus className="w-6 h-6" />
          </button>
+
+         {/* Menggunakan Modal dari Modal.jsx */}
          <Modal isOpen={isAddNoteModalOpen} onClose={() => setIsAddNoteModalOpen(false)}>
             <h2 className="text-2xl font-bold mb-4">Tambah Catatan Baru</h2>
             <AddNoteForm addNote={addNote} onClose={() => setIsAddNoteModalOpen(false)} />
@@ -94,23 +96,3 @@ export default function App() {
       </div>
    );
 }
-
-// Modal Component
-const Modal = ({ isOpen, onClose, children }) => {
-   if (!isOpen) return null;
-
-   return (
-      <div className="fixed inset-0 bg-black/80 flex backdrop-blur-sm justify-center items-center z-50">
-         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <div className="flex justify-end">
-               <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-               </button>
-            </div>
-            {children}
-         </div>
-      </div>
-   );
-};
