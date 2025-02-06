@@ -38,7 +38,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
          {/* Navbar */}
          <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? "ml-44" : "ml-16"}`}>
-            <nav className="p-4 mb-3 shadow-sm bg-white relative z-3">
+            <nav className="p-4 shadow-sm bg-white relative z-3">
                <div className="mx-auto flex justify-between items-center">
                   <h1 className="text-black text-2xl py-1 italic">Aplikasi Catatan</h1>
                </div>

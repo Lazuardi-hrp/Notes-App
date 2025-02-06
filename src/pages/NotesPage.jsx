@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import NoteList from "./notes/NoteList";
+import NoteList from "../components/notes/NoteList";
 import { ToastContainer, toast } from "react-toastify";
-import AddNoteForm from "./notes/AddNoteForm"; 
-import Navbar from "./NavBar";
-import SearchBar from "./notes/SearchBar";
+import AddNoteForm from "../components/notes/AddNoteForm"; 
+import SearchBar from "../components/notes/SearchBar";
 import { getInitialData, showFormattedDate } from "../utils/utils";
 import { FaPlus } from "react-icons/fa";
-import Modal from "./Modal"; 
-export default function App() {
+import Modal from "../components/Modal"; 
+
+export default function NotesPage({ isSidebarOpen }) {
    const [notes, setNotes] = useState([]);
    const [searchTerm, setSearchTerm] = useState("");
    const [showArchived, setShowArchived] = useState(false);
    const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
-   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
    useEffect(() => {
       setNotes(getInitialData());
@@ -46,12 +45,6 @@ export default function App() {
 
    return (
       <div className="min-h-screen bg-gray-100 flex flex-col">
-         <Navbar 
-            searchTerm={searchTerm} 
-            setSearchTerm={setSearchTerm} 
-            isSidebarOpen={isSidebarOpen} 
-            setIsSidebarOpen={setIsSidebarOpen} 
-         />
          <div className={`p-4 flex-1 overflow-auto transition-all duration-300 ${isSidebarOpen ? "ml-44 w-[calc(100%-11rem)]" : "ml-16 w-[calc(100%-4rem)]"}`}>
             <div className="mb-4 flex flex-wrap justify-between items-center gap-2">
                <div className="flex gap-2">
@@ -86,7 +79,6 @@ export default function App() {
             <FaPlus className="w-6 h-6" />
          </button>
 
-         {/* Menggunakan Modal dari Modal.jsx */}
          <Modal isOpen={isAddNoteModalOpen} onClose={() => setIsAddNoteModalOpen(false)}>
             <h2 className="text-2xl font-bold mb-4">Tambah Catatan Baru</h2>
             <AddNoteForm addNote={addNote} onClose={() => setIsAddNoteModalOpen(false)} />
