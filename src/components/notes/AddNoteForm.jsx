@@ -1,18 +1,19 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import Button from "../shared/Button"; // Import komponen Button
 
 const AddNoteForm = ({ addNote, onClose }) => {
-   const [title, setTitle] = useState("")
-   const [body, setBody] = useState("")
+   const [title, setTitle] = useState("");
+   const [body, setBody] = useState("");
 
    const handleSubmit = (e) => {
-      e.preventDefault()
+      e.preventDefault();
       if (title.trim() && body.trim()) {
-         addNote(title, body)
-         setTitle("")
-         setBody("")
-         onClose()
+         addNote(title, body);
+         setTitle("");
+         setBody("");
+         onClose();
       }
-   }
+   };
 
    return (
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -43,23 +44,15 @@ const AddNoteForm = ({ addNote, onClose }) => {
          ></textarea>
          </div>
          <div className="flex justify-end space-x-2">
-         <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-         >
+         <Button type="button" onClick={onClose} variant="secondary">
             Batal
-         </button>
-         <button
-            type="submit"
-            className="px-4 py-2 text-sm font-medium text-white bg-[#212A3E] rounded-md hover:bg-[#394867] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-         >
+         </Button>
+         <Button type="submit" variant="primary">
             Tambah Catatan
-         </button>
+         </Button>
          </div>
       </form>
-   )
-}
+   );
+};
 
-export default AddNoteForm
-
+export default AddNoteForm;

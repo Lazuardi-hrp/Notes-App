@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaStickyNote, FaTasks, FaClipboardList, FaInfoCircle } from "react-icons/fa";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-   // State untuk menampilkan teks setelah sidebar terbuka penuh
    const [showText, setShowText] = useState(isSidebarOpen);
+   const location = useLocation(); // Untuk menentukan halaman aktif
 
-   // Efek transisi untuk menunda teks agar muncul setelah sidebar terbuka
    useEffect(() => {
       if (isSidebarOpen) {
-         setTimeout(() => setShowText(true), 300); // Delay 300ms agar sinkron dengan animasi
+         setTimeout(() => setShowText(true), 300);
       } else {
          setShowText(false);
       }
@@ -28,10 +28,10 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
                {/* Menu Items */}
                <div className="mt-12 space-y-4 w-full">
-                  <NavItem icon={<FaStickyNote />} text="Notes" showText={showText} />
-                  <NavItem icon={<FaTasks />} text="Todo" showText={showText} />
-                  <NavItem icon={<FaClipboardList />} text="Notes-Task" showText={showText} />
-                  <NavItem icon={<FaInfoCircle />} text="About" showText={showText} />
+                  <NavItem icon={<FaStickyNote />} text="Notes" to="/" showText={showText} active={location.pathname === "/"} />
+                  <NavItem icon={<FaTasks />} text="Todo" to="/todo" showText={showText} active={location.pathname === "/todo"} />
+                  <NavItem icon={<FaClipboardList />} text="Notes-Task" to="/notes-task" showText={showText} active={location.pathname === "/notes-task"} />
+                  <NavItem icon={<FaInfoCircle />} text="About" to="/about" showText={showText} active={location.pathname === "/about"} />
                </div>
             </div>
          </div>
@@ -49,15 +49,15 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 };
 
 // Komponen Item Navigasi Sidebar
-const NavItem = ({ icon, text, showText }) => {
+const NavItem = ({ icon, text, to, showText, active }) => {
    return (
-      <a 
-         href="#" 
-         className={`flex items-center p-3 hover:bg-gray-700 rounded-lg transition-colors ${showText ? "justify-start gap-3" : "justify-center"}`}
-      >
+      <Link 
+         to={to} className={`flex items-center p-3 rounded-lg transition-colors ${
+            active ? "bg-gray-700 text-white" : "hover:bg-gray-700"
+         } ${showText ? "justify-start gap-3" : "justify-center"}`}>
          <span className="text-xl">{icon}</span>
          {showText && <span className="transition-opacity duration-300">{text}</span>}
-      </a>
+      </Link>
    );
 };
 
