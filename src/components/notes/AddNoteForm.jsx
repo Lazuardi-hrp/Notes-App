@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../shared/Button"; // Import komponen Button
+import Button from "../shared/Button"; 
 
 const AddNoteForm = ({ addNote, onClose }) => {
    const [title, setTitle] = useState("");
