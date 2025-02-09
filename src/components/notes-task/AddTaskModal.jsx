@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../Modal";
+import Button from "../shared/Button";
 
 const AddTaskModal = ({ isOpen, onClose, columns, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -41,14 +42,17 @@ const AddTaskModal = ({ isOpen, onClose, columns, onSubmit }) => {
                 value={formData.title}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#212A3E] focus:border-[#212A3E]"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-1">Category</label>
-              <select name="category" value={formData.category} onChange={handleChange}
-                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#212A3E] custom-category-select">
                 <option value="Commerce">Commerce</option>
                 <option value="Design">Design</option>
                 <option value="Medical">Medical</option>
@@ -64,7 +68,7 @@ const AddTaskModal = ({ isOpen, onClose, columns, onSubmit }) => {
                 value={formData.date}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#212A3E]"
               />
             </div>
 
@@ -77,8 +81,7 @@ const AddTaskModal = ({ isOpen, onClose, columns, onSubmit }) => {
                 onChange={handleChange}
                 maxLength="2"
                 required
-                className="w-full p-2 border rounded-lg uppercase focus:ring-2 focus:ring-blue-500"
-              />
+                className="w-full p-2 border rounded-lg uppercase focus:ring-2 focus:ring-[#212A3E]"/>
             </div>
 
             <div>
@@ -87,8 +90,7 @@ const AddTaskModal = ({ isOpen, onClose, columns, onSubmit }) => {
                 name="columnId"
                 value={formData.columnId}
                 onChange={handleChange}
-                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
+                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#212A3E]">
                 {columns.map((column) => (
                   <option key={column.id} value={column.id}>
                     {column.title}
@@ -99,17 +101,12 @@ const AddTaskModal = ({ isOpen, onClose, columns, onSubmit }) => {
           </div>
 
           <div className="mt-6 flex justify-end gap-3">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800">
+            <Button variant="secondary" onClick={onClose}>
               Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+            </Button>
+            <Button type="submit" variant="primary">
               Add Task
-            </button>
+            </Button>
           </div>
         </form>
       </div>
