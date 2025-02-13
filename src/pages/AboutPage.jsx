@@ -3,7 +3,7 @@ import Button from "../components/shared/Button";
 export default function AboutPage({ isSidebarOpen }) {
    return (
       <div className="min-h-screen bg-gray-100 flex flex-col">
-         <div className={`flex-1 overflow-auto p-5 transition-all duration-300 ${isSidebarOpen ? "ml-46" : "ml-18"}`}>
+         <div className={`flex-1 overflow-auto p-6 transition-all duration-300 ${isSidebarOpen ? "ml-46" : "ml-18"}`}>
             <Header />
             <Features />
             <WhyChooseUs />

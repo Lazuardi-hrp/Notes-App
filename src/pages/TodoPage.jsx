@@ -1,39 +1,17 @@
-import { useState } from "react";
+// src/pages/TodoPage.jsx
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { toast } from "react-toastify";
+import { useTodos } from "../utils/utils-todo"; // Impor hook dari utils-todo
 import ToastNotifications from "../components/shared/Toast"; 
 
 export default function TodoPage() {
-   const [todos, setTodos] = useState([
-      { id: 1, text: "Learn Next.js", completed: false },
-      { id: 2, text: "Build a todo app", completed: true },
-      { id: 3, text: "Deploy to Vercel", completed: true },
-   ]);
-   const [newTodo, setNewTodo] = useState("");
-
-   const addTodo = () => {
-      if (newTodo.trim() !== "") {
-         setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-         setNewTodo("");
-         toast.success("Todo added successfully!");
-      } else {
-         toast.error("Todo cannot be empty!");
-      }
-   };
-
-   const toggleComplete = (id) => {
-      setTodos(
-         todos.map((todo) =>
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
-         )
-      );
-      toast.info("Todo status updated!");
-   };
-
-   const deleteTodo = (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
-      toast.warn("Todo deleted!");
-   };
+   const {
+      todos,
+      newTodo,
+      setNewTodo,
+      addTodo,
+      toggleComplete,
+      deleteTodo,
+   } = useTodos(); // Menggunakan hook
 
    return (
       <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -87,7 +65,6 @@ export default function TodoPage() {
                </li>
             ))}
          </ul>
-         {/* Gunakan komponen ToastNotifications di sini */}
          <ToastNotifications />
       </div>
    );

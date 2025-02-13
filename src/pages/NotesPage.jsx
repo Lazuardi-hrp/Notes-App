@@ -7,7 +7,7 @@ import { getInitialData, showFormattedDate } from "../utils/utils";
 import { FaPlus } from "react-icons/fa";
 import Modal from "../components/Modal";
 import Button from "../components/shared/Button";
-import ToastNotifications from "../components/shared/Toast"; // Import the new ToastNotifications component
+import ToastNotifications from "../components/shared/Toast";
 
 export default function NotesPage({ isSidebarOpen }) {
    const [notes, setNotes] = useState([]);
@@ -53,16 +53,14 @@ export default function NotesPage({ isSidebarOpen }) {
                   <Button
                      variant={showArchived ? "inactive" : "active"}
                      onClick={() => setShowArchived(false)}
-                     className="px-6 py-3 text-lg"
-                  >
+                     className="px-6 py-3 text-lg">
                      Catatan Aktif
                   </Button>
 
                   <Button
                      variant={showArchived ? "active" : "inactive"}
                      onClick={() => setShowArchived(true)}
-                     className="px-6 py-3 text-lg"
-                  >
+                     className="px-6 py-3 text-lg">
                      Catatan Arsip
                   </Button>
                </div>
@@ -77,23 +75,21 @@ export default function NotesPage({ isSidebarOpen }) {
                deleteNote={deleteNote}
                toggleArchive={toggleArchive}
                showArchived={showArchived}
-               showFormattedDate={showFormattedDate}
-            />
+               showFormattedDate={showFormattedDate}/>
          </div>
 
          <Button
             variant="floating"
             onClick={() => setIsAddNoteModalOpen(true)}
             icon={<FaPlus className="w-7 h-7" />} 
-            className="w-16 h-16 text-xl" 
-         />
+            className="w-16 h-16 text-xl" />
 
          <Modal isOpen={isAddNoteModalOpen} onClose={() => setIsAddNoteModalOpen(false)}>
             <h2 className="text-2xl font-bold mb-4">Tambah Catatan Baru</h2>
             <AddNoteForm addNote={addNote} onClose={() => setIsAddNoteModalOpen(false)} />
          </Modal>
 
-         <ToastNotifications /> {/* Use the new ToastNotifications component */}
+         <ToastNotifications />
       </div>
    );
 }

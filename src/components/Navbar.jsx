@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaBars, FaStickyNote, FaTasks, FaClipboardList, FaInfoCircle } from "react-icons/fa";
+import { FaBars, FaStickyNote, FaTasks, FaClipboardList, FaInfoCircle, FaBell, FaUserCircle } from "react-icons/fa";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
    const [showText, setShowText] = useState(isSidebarOpen);
-   const location = useLocation(); // Untuk menentukan halaman aktif
+   const location = useLocation(); 
 
    useEffect(() => {
       if (isSidebarOpen) {
@@ -19,19 +19,19 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
          {/* Sidebar */}
          <div className={`fixed left-0 top-0 h-full bg-gray-800 text-white transition-all duration-300 z-3 ${isSidebarOpen ? "w-44" : "w-16"}`}>
             <div className="p-4 flex flex-col h-full">
-               {/* Sidebar Toggle Button */}
+               {/* Tombol Toggle Sidebar */}
                <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} 
                   className="text-white text-2xl p-2 hover:bg-gray-700 rounded-lg flex items-center">
                   <FaBars />
                   {showText && <span className="ml-2 text-sm transition-opacity duration-300">Menu</span>}
                </button>
 
-               {/* Menu Items */}
+               {/* Item Menu */}
                <div className="mt-12 space-y-4 w-full">
-                  <NavItem icon={<FaStickyNote />} text="Notes" to="/" showText={showText} active={location.pathname === "/"} />
-                  <NavItem icon={<FaTasks />} text="Todo" to="/todo" showText={showText} active={location.pathname === "/todo"} />
-                  <NavItem icon={<FaClipboardList />} text="Notes-Task" to="/notes-task" showText={showText} active={location.pathname === "/notes-task"} />
-                  <NavItem icon={<FaInfoCircle />} text="About" to="/about" showText={showText} active={location.pathname === "/about"} />
+                  <NavItem icon={<FaStickyNote />} text="Catatan" to="/" showText={showText} active={location.pathname === "/"} />
+                  <NavItem icon={<FaTasks />} text="Tugas" to="/todo" showText={showText} active={location.pathname === "/todo"} />
+                  <NavItem icon={<FaClipboardList />} text="Catatan-Tugas" to="/notes-task" showText={showText} active={location.pathname === "/notes-task"} />
+                  <NavItem icon={<FaInfoCircle />} text="Tentang" to="/about" showText={showText} active={location.pathname === "/about"} />
                </div>
             </div>
          </div>
@@ -41,6 +41,11 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             <nav className="p-4 shadow-sm bg-white relative z-3">
                <div className="mx-auto flex justify-between items-center">
                   <h1 className="text-black text-2xl py-1 italic">Aplikasi Catatan</h1>
+                  {/* Ikon Notifikasi & Pengguna */}
+                  <div className="flex items-center gap-4 p-2">
+                     <FaBell className="text-xl text-gray-600 cursor-pointer hover:text-black" />
+                     <FaUserCircle className="text-2xl text-gray-600 cursor-pointer hover:text-black" />
+                  </div>
                </div>
             </nav>
          </div>

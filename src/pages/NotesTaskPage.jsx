@@ -32,8 +32,7 @@ export default function KanbanPage({ isSidebarOpen }) {
                <Button 
                   variant="primary" 
                   className="px-6 py-3 text-lg"
-                  onClick={() => setShowModal(true)}
-               >
+                  onClick={() => setShowModal(true)}>
                   + Add Task
                </Button>
             </div>
@@ -53,7 +52,6 @@ export default function KanbanPage({ isSidebarOpen }) {
                onSubmit={handleAddTaskWithToast}
             />
 
-            {/* Gunakan komponen ToastNotifications di sini */}
             <ToastNotifications />
          </div>
       </div>
