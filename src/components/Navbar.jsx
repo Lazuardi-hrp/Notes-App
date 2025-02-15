@@ -28,10 +28,10 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
                {/* Item Menu */}
                <div className="mt-12 space-y-4 w-full">
-                  <NavItem icon={<FaStickyNote />} text="Catatan" to="/" showText={showText} active={location.pathname === "/"} />
-                  <NavItem icon={<FaTasks />} text="Tugas" to="/todo" showText={showText} active={location.pathname === "/todo"} />
-                  <NavItem icon={<FaClipboardList />} text="Catatan-Tugas" to="/notes-task" showText={showText} active={location.pathname === "/notes-task"} />
-                  <NavItem icon={<FaInfoCircle />} text="Tentang" to="/about" showText={showText} active={location.pathname === "/about"} />
+                  <NavItem icon={<FaStickyNote />} text="Notes" to="/" showText={showText} active={location.pathname === "/"} />
+                  <NavItem icon={<FaTasks />} text="Todo Lists" to="/todo" showText={showText} active={location.pathname === "/todo"} />
+                  <NavItem icon={<FaClipboardList />} text="Note-task" to="/notes-task" showText={showText} active={location.pathname === "/notes-task"} />
+                  <NavItem icon={<FaInfoCircle />} text="About" to="/about" showText={showText} active={location.pathname === "/about"} />
                </div>
             </div>
          </div>
@@ -40,8 +40,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
          <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? "ml-44" : "ml-16"}`}>
             <nav className="p-4 shadow-sm bg-white relative z-3">
                <div className="mx-auto flex justify-between items-center">
-                  <h1 className="text-black text-2xl py-1 italic">Aplikasi Catatan</h1>
-                  {/* Ikon Notifikasi & Pengguna */}
+                  <h1 className="text-black text-2xl py-1 italic">Nyatetin</h1>
                   <div className="flex items-center gap-4 p-2">
                      <FaBell className="text-xl text-gray-600 cursor-pointer hover:text-black" />
                      <FaUserCircle className="text-2xl text-gray-600 cursor-pointer hover:text-black" />

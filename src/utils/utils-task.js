@@ -2,7 +2,7 @@ export const getInitialData = () => [
    {
       id: "todo",
       title: "To do",
-      color: "bg-yellow-50",
+      color: "bg-white",
       tasks: [
          {
             id: "1",
@@ -29,7 +29,7 @@ export const getInitialData = () => [
    {
       id: "in-progress",
       title: "In progress",
-      color: "bg-purple-50",
+      color: "bg-white",
       tasks: [
          {
          id: "3",
@@ -46,7 +46,7 @@ export const getInitialData = () => [
    {
       id: "on-approval",
       title: "On approval",
-      color: "bg-green-50",
+      color: "bg-white",
       tasks: [
          {
          id: "4",
@@ -63,7 +63,7 @@ export const getInitialData = () => [
    {
       id: "done",
       title: "Done",
-      color: "bg-pink-50",
+      color: "bg-white",
       tasks: [
          {
          id: "5",

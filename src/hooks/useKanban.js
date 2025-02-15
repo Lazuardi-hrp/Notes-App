@@ -14,7 +14,6 @@ export const useKanban = (initialData) => {
          day: "numeric",
          }),
          assignee: {
-         avatar: "/placeholder.svg?height=24&width=24",
          fallback: formData.assigneeFallback.toUpperCase(),
          },
       };
